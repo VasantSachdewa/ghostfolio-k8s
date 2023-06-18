@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-ghostfolio
-  labels:
-    app: ghostfolio
 spec:
   type: {{ .Values.service.type }}
+  selector:
+    app: ghostfolio
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.ghostfolio.port }}
       targetPort: {{ .Values.ghostfolio.port }}
+      nodePort: {{ .Values.service.port }}
       protocol: TCP
-      name: http

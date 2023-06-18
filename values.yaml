@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 service:
-  type: ClusterIP
-  port: 4444
+  type: NodePort
+  port: 32333
 
 ghostfolio:
   repository: ghostfolio/ghostfolio
