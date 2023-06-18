@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 service:
-  type: ClusterIP
-  port: 4444
+  type: NodePort
+  port: 32333
 
 ghostfolio:
   repository: ghostfolio/ghostfolio
@@ -14,13 +14,13 @@ ghostfolio:
   pullPolicy: IfNotPresent
   env: 
     - name: DATABASE_URL
-      value: postgresql://user:ghostfolio@10.152.183.94:5432/postgres?connect_timeout=300&sslmode=prefer
+      value: postgresql://user:ghostfolio@ghostfolio-postgresql/postgres?connect_timeout=300&sslmode=prefer
     - name: ACCESS_TOKEN_SALT
       value: ghostfolio
     - name: JWT_SECRET_KEY 
       value: ghostfolio
     - name: REDIS_HOST
-      value: 10.152.183.144
+      value: ghostfolio-redis-master
     - name: REDIS_PASSWORD
       value: ghostfolio
 
