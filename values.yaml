@@ -1,0 +1,35 @@
+# Default values for ghostfolio-k8s.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  type: ClusterIP
+  port: 4444
+
+ghostfolio:
+  repository: ghostfolio/ghostfolio
+  tag: latest
+  replicaCount: 1
+  port: 3333
+  pullPolicy: IfNotPresent
+  env: 
+    - name: DATABASE_URL
+      value: postgresql://user:ghostfolio@10.152.183.94:5432/postgres?connect_timeout=300&sslmode=prefer
+    - name: ACCESS_TOKEN_SALT
+      value: ghostfolio
+    - name: JWT_SECRET_KEY 
+      value: ghostfolio
+    - name: REDIS_HOST
+      value: 10.152.183.144
+    - name: REDIS_PASSWORD
+      value: ghostfolio
+
+postgresql:
+  auth:
+    username: user
+    password: ghostfolio
+
+redis:
+  architecture: standalone
+  auth:
+    password: ghostfolio
